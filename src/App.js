@@ -12,7 +12,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <TodoItem />
+        <TodoItem title="Go to Shopping" />
+        <TodoItem title="Go to Market" />
+        < TodoItem title = "Go to Bed" />
         <a
           className="App-link"
           href="https://reactjs.org"

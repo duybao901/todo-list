@@ -5,7 +5,7 @@ class TodoItem extends Component {
         return (
             <div className="doto-item">
                 <p>
-                    Go to shopping
+                    {this.props.title}
                 </p>        
             </div>
         )
