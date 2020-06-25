@@ -4,26 +4,19 @@ import './App.css';
 
 import TodoItem from './components/TodoItem';
 
-function App() {
+const todoList = [
+  'Go to Shopping',
+  'Go to Market',
+  'Go to Bed'
+]
+function App(){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <TodoItem title="Go to Shopping" />
-        <TodoItem title="Go to Market" />
-        < TodoItem title = "Go to Bed" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        todoList.map((item, index) => {
+          return <TodoItem key={index} title = {item}/>
+        })  
+      }
     </div>
   );
 }
