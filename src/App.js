@@ -5,16 +5,25 @@ import './App.css';
 import TodoItem from './components/TodoItem';
 
 const todoList = [
-  'Go to Shopping',
-  'Go to Market',
-  'Go to Bed'
+  {
+    title: 'Go to Shopping',
+    isComplete: true
+  },
+  {
+    title: 'Go to Market',
+    isComplete: true
+  },
+  {
+    title: 'Go to Bed',
+    isComplete: false
+  }
 ]
 function App(){
   return (
     <div className="App">
       {
         todoList.map((item, index) => {
-          return <TodoItem key={index} title = {item}/>
+          return <TodoItem key={index} item={item}/>
         })  
       }
     </div>
