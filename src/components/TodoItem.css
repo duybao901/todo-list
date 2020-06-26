@@ -4,4 +4,5 @@
 }
 .todo-item-complete {
     text-decoration: line-through;
+    opacity:.2;
 }
