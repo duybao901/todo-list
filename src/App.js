@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import checkAll from './img/checkall.svg';
 import TodoItem from './components/TodoItem';
 
 
@@ -25,6 +25,8 @@ class App extends Component{
       ]
     }
   }
+
+  // Them su kien khi click vao item nao thi item se them class active 
   onClickItem(item) {
     return (event) => {
       const { todoList } = this.state;
@@ -42,10 +44,17 @@ class App extends Component{
       });
     }
   }
+
   render() {
     const { todoList } = this.state;
+    const checkAll1 = checkAll;
       return (     
         <div className="App">
+          <h2 className="app-heading">To Do List</h2>
+          <div className="header">
+            <img src={checkAll1} />
+            <input type="text" placeholder="Add new item"></input>
+          </div>
           {
             todoList.length > 0 && todoList.map((item, index) => {
               return <TodoItem
@@ -61,5 +70,6 @@ class App extends Component{
       );
     }
   }
+
 
 export default App;
