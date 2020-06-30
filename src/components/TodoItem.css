@@ -1,16 +1,19 @@
 .todo-item {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     display: flex;
-    height: 60px;
+    height: 50px;
     align-items: center;
     border: 1px solid black;
     margin-bottom: 10px;
     padding: 10px 20px;
+    text-decoration: line-through;
+    transition: all .1s linear;
 }
 .todo-item-complete {
-    text-decoration: line-through;
+
     opacity:.2;
+    text-decoration: none;
 }
 .todo-img{
     width: 50px;

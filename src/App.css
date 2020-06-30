@@ -5,6 +5,7 @@
   border: 1px solid #1D3557;
   padding:20px;
   box-shadow: 0 5px 11px rgba(0, 0, 0, .2);
+
 }
 .app-heading{
   text-align:center;
@@ -39,4 +40,47 @@
 }
 .header input::-webkit-input-placeholder{
   font-weight:300; 
+  font-style: italic;
+}
+.footer{  
+  position: relative;
+  margin: 20px 0 40px 0;
+}
+.counts{
+  float: left;
+  display: inline-block;
+  font-style:italic;
+}
+.counts span{
+  font-style: normal;
+}
+ul{
+  margin:0;
+  padding:0;
+}
+ul li{
+  list-style:none;
+  display: inline;
+}
+.filters{
+  position: absolute;
+  right: 50%;
+  transform: translate(50%);
+  display: block;
+}
+.filters li a{
+  margin: 0 10px;
+  padding: 2px 6px;
+  border: 1px solid transparent;
+  border-radius:3px;
+  cursor: pointer;
+}
+.filters li a.selected{
+  padding: 2px 6px;
+  border: 1px solid #9f9d9d;
+  border-radius:3px;
+}
+.filters li a:hover{
+  border: 1px solid #aeadad;
+  border-radius:3px;
 }
