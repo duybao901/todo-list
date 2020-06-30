@@ -10,7 +10,7 @@ class App extends Component{
     super();
     this.state = {  
       newItem: '',
-      itemLeft: 0,
+      currentFilter:'all',
       todoList: [
         // {
         // title: 'Go to Shopping',
@@ -77,30 +77,44 @@ class App extends Component{
 
   // Su kien click vao dau tick thi cac item de complete
   onClickAllItem(event) {
-    const { newItem, todoList } = this.state;
-    const newTodoList = todoList.map((item) => {
-      return {title: item.title, isComplete: false}
+    const { todoList } = this.state;
+    const newTodoList = todoList.map((item) => {   
+      return {title: item.title, isComplete: event.target.checked}
     })
-    console.log(newTodoList);
     this.setState({
       todoList: [
         ...newTodoList
       ]
     })  
-    
   }
 
   //
-
+  getCurrentItemLeft() {
+    var count = 0;
+    const { todoList } = this.state;
+    todoList.forEach((item) => {
+      if (item.isComplete) {
+        count++;
+      }
+    })
+    return count;
+  }
   render() {
-    var { todoList,itemLeft,newItem } = this.state;
+    const { todoList,newItem } = this.state;
     const checkAll1 = checkAll;
       return (     
         <div className="App">
           <h2 className="app-heading">To Do List</h2>
           <div className="header" >
-            <img src={checkAll1} onClick={this.onClickAllItem}/>
+            <label htmlFor="toggle-all">
+             <img src={checkAll1} />
+            </label>
             <input
+              onClick={this.onClickAllItem}type="checkbox" id="toggle-all"
+              className="toggle-all"
+              onClick={this.onClickAllItem}></input>
+            <input
+              className="add-item"
               onKeyUp={this.onKeyUp}
               type="text"
               value={newItem} // Thang value va thang onchange phai di cung nhau
@@ -120,15 +134,8 @@ class App extends Component{
             todoList.length === 0 && <p></p>
           }
           <footer className="footer">
-            <span className="counts" >
-            {  
-              todoList.forEach((item) => {
-                if (item.isComplete) {
-                  itemLeft++;
-                }
-              })              
-            }
-            <span>{itemLeft}</span> Item left
+            <span className="counts" >                            
+            <span>{this.getCurrentItemLeft()}</span> Item left
             </span>
             <ul className = "filters">
               <li>

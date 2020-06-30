@@ -5,6 +5,7 @@
   border: 1px solid #1D3557;
   padding:20px;
   box-shadow: 0 5px 11px rgba(0, 0, 0, .2);
+  position: relative;
 
 }
 .app-heading{
@@ -26,7 +27,7 @@
 .header img{
   width: 30px;
 }
-.header input{
+.add-item {
   border:none;
   padding-left:20px;
   background-color: transparent;
@@ -35,10 +36,10 @@
   width: 100%;
   height: 100%;
 }
-.header input:focus{
+.add-item:focus{
   outline: none;
 }
-.header input::-webkit-input-placeholder{
+.add-item::-webkit-input-placeholder{
   font-weight:300; 
   font-style: italic;
 }
@@ -86,4 +87,13 @@ ul li{
 .filters li a:hover{
   border: 1px solid #aeadad;
   border-radius:3px;
+}
+.toggle-all{
+  width: 1px;
+  height: 1px;
+  border: none;
+  opacity: 1;
+  position: absolute;
+  display: block;
+  z-index: 1;
 }
