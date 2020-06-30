@@ -10,24 +10,25 @@ class App extends Component{
     super();
     this.state = {  
       newItem: '',
+      itemLeft: 0,
       todoList: [
-        {
-        title: 'Go to Shopping',
-        isComplete: false
-        },
-        {
-          title: 'Go to Market',
-          isComplete: false
-        },
-        {
-          title: 'Go to Bed',
-          isComplete: false
-        }
+        // {
+        // title: 'Go to Shopping',
+        // isComplete: false
+        // },
+        // {
+        //   title: 'Go to Market',
+        //   isComplete: false
+        // },
+        // {
+        //   title: 'Go to Bed',
+        //   isComplete: false
+        // }
       ]
     }
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClickAllItem = this.onClickAllItem.bind(this)
+    this.onClickAllItem = this.onClickAllItem.bind(this);
   }
 
   // Su kien kem theo cua the input value + onChange
@@ -86,9 +87,13 @@ class App extends Component{
         ...newTodoList
       ]
     })  
+    
   }
+
+  //
+
   render() {
-    const { todoList,newItem } = this.state;
+    var { todoList,itemLeft,newItem } = this.state;
     const checkAll1 = checkAll;
       return (     
         <div className="App">
@@ -112,15 +117,22 @@ class App extends Component{
             })
           }
           {
-            todoList.length === 0 && <p>Nothing here</p>
+            todoList.length === 0 && <p></p>
           }
-          <footer class="footer">
-            <span class="counts">
-              <span>0</span> Item left
+          <footer className="footer">
+            <span className="counts" >
+            {  
+              todoList.forEach((item) => {
+                if (item.isComplete) {
+                  itemLeft++;
+                }
+              })              
+            }
+            <span>{itemLeft}</span> Item left
             </span>
-            <ul class="filters">
+            <ul className = "filters">
               <li>
-                <a class="selected">All</a>
+                <a className="selected">All</a>
               </li>
               <li>
                 <a>Active</a>

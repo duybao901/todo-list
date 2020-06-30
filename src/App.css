@@ -69,11 +69,14 @@ ul li{
   display: block;
 }
 .filters li a{
-  margin: 0 10px;
+  
   padding: 2px 6px;
   border: 1px solid transparent;
   border-radius:3px;
   cursor: pointer;
+}
+.filters li:not(:last-child){
+  margin-right: 10px;
 }
 .filters li a.selected{
   padding: 2px 6px;
