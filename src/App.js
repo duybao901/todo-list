@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import checkAll from './img/checkall.svg';
+import checkAll from './img/tickall2.svg';
 import TodoItem from './components/TodoItem';
 
 
@@ -10,25 +10,27 @@ class App extends Component{
     super();
     this.state = {  
       newItem: '',
-      currentFilter:'all',
+      currentFilter: 'all',
       todoList: [
-        // {
-        // title: 'Go to Shopping',
-        // isComplete: false
-        // },
-        // {
-        //   title: 'Go to Market',
-        //   isComplete: false
-        // },
-        // {
-        //   title: 'Go to Bed',
-        //   isComplete: false
-        // }
+        {
+        title: 'Go to Shopping',
+        isComplete: false
+        },
+        {
+          title: 'Go to Market',
+          isComplete: false
+        },
+        {
+          title: 'Go to Bed',
+          isComplete: true
+        }
       ]
     }
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onClickAllItem = this.onClickAllItem.bind(this);
+    this.addClassSelected = this.addClassSelected.bind(this);
+    this.filterItem = this.filterItem.bind(this)
   }
 
   // Su kien kem theo cua the input value + onChange
@@ -79,7 +81,7 @@ class App extends Component{
   onClickAllItem(event) {
     const { todoList } = this.state;
     const newTodoList = todoList.map((item) => {   
-      return {title: item.title, isComplete: event.target.checked}
+      return {title: item.title, isComplete: !event.target.checked}
     })
     this.setState({
       todoList: [
@@ -88,7 +90,7 @@ class App extends Component{
     })  
   }
 
-  //
+  // Lay item chua duoc complete
   getCurrentItemLeft() {
     var count = 0;
     const { todoList } = this.state;
@@ -99,9 +101,38 @@ class App extends Component{
     })
     return count;
   }
+
+  // Them class  khi click
+  addClassSelected(event) {
+    var btnFilters = document.querySelectorAll(".filters li a");
+    for (let i = 0; i < btnFilters.length; i++){
+      btnFilters[i].className += btnFilters[i].className.replace(" ", "selected");
+    }
+    event.currentTarget.className = "selected";
+  }
+
+  // filter item theo state
+  filterItem(event) {
+    this.setState({
+      currentFilter: event.currentTarget.textContent
+    })
+  }
   render() {
-    const { todoList,newItem } = this.state;
+    const { newItem,currentFilter,todoList } = this.state;
     const checkAll1 = checkAll;
+    var todoListFilter = todoList;
+    if (currentFilter === 'Active') {
+      todoListFilter = todoList.filter((item) => {
+        return item.isComplete === true;
+      })
+    } else {
+      if (currentFilter === 'Complete') {
+        todoListFilter = todoList.filter((item) => {
+          return item.isComplete === false;
+        })
+      }
+    }
+
       return (     
         <div className="App">
           <h2 className="app-heading">To Do List</h2>
@@ -122,7 +153,7 @@ class App extends Component{
               placeholder="What needs to be done?"></input>
           </div>
           {
-            todoList.length > 0 && todoList.map((item, index) => {
+            todoListFilter.length > 0 && todoListFilter.map((item, index) => {
               return <TodoItem
                 key={index}
                 item={item}                
@@ -139,13 +170,13 @@ class App extends Component{
             </span>
             <ul className = "filters">
               <li>
-                <a className="selected">All</a>
+                <a onMouseUp={this.addClassSelected} onClick={this.filterItem} >All</a>
               </li>
               <li>
-                <a>Active</a>
+                <a onMouseUp={this.addClassSelected} onClick={this.filterItem} >Active</a>
               </li>
               <li>
-                <a>Complete</a>
+                <a onMouseUp={this.addClassSelected} onClick={this.filterItem} >Complete</a>
               </li>
             </ul>
           </footer>

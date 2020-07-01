@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import './TodoItem.css';
-import check from '../img/check.svg';
-import checked from '../img/checked.svg';
+//import check from '../img/check.svg';
+import check from '../img/tick2.svg';
+import checked from '../img/tick1.svg';
 
 class TodoItem extends Component {
     render() {        
@@ -21,7 +22,7 @@ class TodoItem extends Component {
         return (
             <div  className={className}>
                 <img onClick={onClick} src={url} className="todo-img"/>
-                <p>
+                <p className="todo-title">
                     {item.title}
                 </p>        
             </div>
