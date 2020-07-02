@@ -103,3 +103,28 @@ ul li{
   display: block;
   z-index: 1;
 }
+.clear{
+  float: right;
+  font-size:  16px;
+  font-style: italic;
+  cursor: pointer;
+  display: none;
+}
+.clear.clear-complete {
+  display: block;
+}
+.clear::after{
+  content:"";
+  display:block;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  position: relative;
+  top: -3px;
+  display: none;
+  
+}
+.clear:hover::after {
+  cursor: pointer;
+  display: block;
+}

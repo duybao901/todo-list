@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 // import logo from './logo.svg';
 import './App.css';
 import checkAll from './img/tickall2.svg';
 import TodoItem from './components/TodoItem';
+
 
 
 class App extends Component{
@@ -31,6 +33,8 @@ class App extends Component{
     this.onClickAllItem = this.onClickAllItem.bind(this);
     this.addClassSelected = this.addClassSelected.bind(this);
     this.filterItem = this.filterItem.bind(this)
+    // this.showClearText = this.showClearText.bind(this);
+    this.clearItemComplete = this.clearItemComplete.bind(this);
   }
 
   // Su kien kem theo cua the input value + onChange
@@ -132,11 +136,28 @@ class App extends Component{
       })
     }
   }
-  // clear all item
+  // clear item complete
+  // showClearText() {
+  //   const { todoList } = this.state;
+
+  //   todoList.forEach
+  // }
+  clearItemComplete() {
+    const { todoList } = this.state;
+    const newTodoList = todoList.filter((item) => {
+      return item.isComplete;
+    })
+    this.setState({
+      todoList:[
+        ...newTodoList
+      ]
+    })
+  }
   render() {
     const { newItem,currentFilter,todoList } = this.state;
     const checkAll1 = checkAll;
     var todoListFilter = todoList;
+    var clearClass;
     if (currentFilter === 'Active') {
       todoListFilter = todoList.filter((item) => {
         return item.isComplete === true;
@@ -148,7 +169,20 @@ class App extends Component{
         })
       }
     }
-
+    {
+      clearClass = classNames({
+        "clear": true,
+        "clear-complete": false
+      })
+      todoListFilter.forEach((item) => {
+        if (!item.isComplete) {
+          clearClass = classNames({
+            "clear": true,
+            "clear-complete": true
+          })
+        }
+      })
+    }
       return (     
         <div className="App">
           <h2 className="app-heading">To Do List</h2>
@@ -196,11 +230,11 @@ class App extends Component{
                 <a onMouseUp={this.addClassSelected} onClick={this.filterItem} >Complete</a>
               </li>
             </ul>
+           
+            <span className={clearClass} onClick={this.clearItemComplete}>Clear item complete</span>
           </footer>
       </div>
       );
     }
   }
-
-
 export default App;
