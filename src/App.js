@@ -132,7 +132,7 @@ class App extends Component{
       })
     }
   }
-  
+  // clear all item
   render() {
     const { newItem,currentFilter,todoList } = this.state;
     const checkAll1 = checkAll;
@@ -174,7 +174,7 @@ class App extends Component{
                 key={index}
                 item={item}                
                 onClick={this.onClickItem(item)}  
-                onMouseUp={this.deleteItem(item)}
+                delitem={this.deleteItem(item)}
               />
             })
           }

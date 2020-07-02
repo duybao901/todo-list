@@ -9,9 +9,8 @@ import imagedelete from '../img/cross.svg'
 class TodoItem extends Component {
     render() {        
         console.log(this.props)
-        const { item, onClick ,onMouseUp} = this.props;        
+        const { item, onClick ,delitem} = this.props;        
         // const item = this.props.item
-        console.log(onMouseUp);
         const className = classNames({
             'todo-item': true,
             'todo-item-complete': item.isComplete
@@ -31,7 +30,7 @@ class TodoItem extends Component {
                 <p className="todo-title">
                     {item.title}
                 </p>        
-                <img className="todo-item-delete" src={imagedelete} onMouseUp={onMouseUp}></img>
+                <img className="todo-item-delete" src={imagedelete} onClick={delitem}></img>
             </div>
         )
     };
