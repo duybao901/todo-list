@@ -61,6 +61,7 @@ class App extends Component{
   // Them su kien khi click vao item nao thi item se them class active 
   onClickItem(item) {
     return (event) => {
+      
       const { todoList } = this.state;
       const index = todoList.indexOf(item); // Index thang nao khi click
       const isComplete = item.isComplete; // Lay gia tri hien tai
@@ -117,6 +118,21 @@ class App extends Component{
       currentFilter: event.currentTarget.textContent
     })
   }
+
+  // Click item nao xoa item do
+  deleteItem(item) {
+    return (event) => {
+      const { todoList } = this.state;
+      const index = todoList.indexOf(item);     
+      this.setState({
+        todoList: [
+          ...todoList.slice(0, index),
+          ...todoList.slice(index + 1)
+        ]
+      })
+    }
+  }
+  
   render() {
     const { newItem,currentFilter,todoList } = this.state;
     const checkAll1 = checkAll;
@@ -157,7 +173,8 @@ class App extends Component{
               return <TodoItem
                 key={index}
                 item={item}                
-                onClick={this.onClickItem(item)}                
+                onClick={this.onClickItem(item)}  
+                onMouseUp={this.deleteItem(item)}
               />
             })
           }
